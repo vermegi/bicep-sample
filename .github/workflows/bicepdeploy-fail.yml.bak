@@ -9,8 +9,8 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: Azure CLI script
-      uses: azure/CLI@v1
+    - uses: azure/arm-deploy@v1
       with:
-        inlineScript: |
-          az deployment group create --resource-group github-action-arm-rg --template-file ./main.bicep -p environmentType=Test
+        resourceGroupName: github-action-arm-rg
+        template: ./main.bicep
+        parameters: environmentType=Test
